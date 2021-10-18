@@ -3,6 +3,5 @@ const authMiddleware = require('../middlewares/auth')
 
 module.exports = (app)=>
 {
-    app.use(authMiddleware);
-    app.get('/product/index',productController.index);
+    app.get('/product/index',authMiddleware,productController.index);
 }

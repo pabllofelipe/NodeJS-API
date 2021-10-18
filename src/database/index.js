@@ -8,9 +8,7 @@ const config = {
 }
 const pool = new Pool(config);
 
-pool.on('connect', () => {
-    console.log('Base de Dados conectado com sucesso!');
-});
+pool.on('connect', () => {});
 
 module.exports = {
     query: (text, params) => pool.query(text, params),

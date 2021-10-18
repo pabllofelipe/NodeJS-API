@@ -7,9 +7,8 @@ module.exports = (app)=>
 {
     app.post('/user', userController.createUser);
     app.get('/user/:id', userController.findUser);
-    app.delete('/user/:id', userController.deleteUser);
+    app.delete('/user/:id',authMiddleware, userController.deleteUser);
     app.get('/login', userController.login);
-    //app.use(authMiddleware)
-    app.put('/user/:id', userController.updateUser);
+    app.put('/user/update',authMiddleware, userController.updateUser);
 
 };

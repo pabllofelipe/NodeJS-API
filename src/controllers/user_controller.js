@@ -79,7 +79,23 @@ async function deleteUser(req,res){
 };
 
 async function updateUser(req,res){
-    const {username, email, password} = req.body;
+    const {user_email, new_password} = req.body;
+    let hash = await bcrypt.hash(new_password, saltRounds)
+    const result = await db.query("UPDATE users SET password = $1 WHERE email = $2",[hash,user_email])
+    if(result.rowCount == 1) {
+        res.status(201).send(
+            {
+                message: 'User updated'
+            }
+        )
+    }else{
+        res.status(401).send(
+            {
+                error: 'User update error'
+            }
+        )
+    }
+
 };
 
 async function login(req,res){
