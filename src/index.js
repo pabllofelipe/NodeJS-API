@@ -7,4 +7,5 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false    }));
 
 require('./routes/user')(app);
+require('./routes/product')(app);
 app.listen(3000);
